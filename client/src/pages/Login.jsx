@@ -1,107 +1,87 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import axios from '../utils/axios';
-import { 
+import toast, { Toaster } from "react-hot-toast";
+import axios from "../utils/axios";
+import {
   Box,
   Typography,
   useTheme,
   useMediaQuery,
   TextField,
   Button,
-  Alert,
-  Collapse,
 } from "@mui/material";
 
 const Login = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  //media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
-  // states
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  //register ctrl
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate fields
+    if (!email || !password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
     try {
       const { data } = await axios.post(
-      "http://localhost:3000/api/v1/auth/login", 
-      { email, password },
-      { withCredentials: true });
+        "/api/v1/auth/login",
+        { email, password },
+        { withCredentials: true }
+      );
+
       const { success, message, accessToken } = data;
       if (success && accessToken) {
-        console.log(message)
-        toast.success(message, {
-          position: "bottom-left",
-        });
-        console.log('Setting accessToken in localStorage:', accessToken);
-        localStorage.setItem('accessToken', accessToken);
-        console.log('AccessToken set:', localStorage.getItem('accessToken'));
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      }   else {
-        toast.error(message, {
-          position: "bottom-left",
-        });
+        toast.success(message);
+        localStorage.setItem("accessToken", accessToken);
+        setTimeout(() => navigate("/"), 1000);
+      } else {
+        toast.error(message || "Login failed");
       }
     } catch (err) {
-      console.log(err);
-      // if (err.response.data.error) {
-      //   // setError(err.response.data.error);
-      // } else if (err.message) {
-        const errorMessage = err.response && err.response.data && err.response.data.message
-        ? err.response.data.message
-        : err.message;
-        setError(errorMessage);
-        toast.error(errorMessage);
-      // }
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      console.error(err);
+      const errorMessage =
+        err.response?.data?.message || err.message || "An error occurred";
+      toast.error(errorMessage);
     }
   };
+
   return (
     <Box
       width={isNotMobile ? "40%" : "80%"}
-      p={"2rem"}
-      m={"2rem auto"}
+      p="2rem"
+      m="2rem auto"
       borderRadius={5}
       sx={{ boxShadow: 5 }}
       backgroundColor={theme.palette.background.alt}
     >
-      <Collapse in={error}>
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Sign In</Typography>
+        <Typography variant="h3" gutterBottom>
+          Sign In
+        </Typography>
 
         <TextField
-          label="email"
+          label="Email"
           type="email"
           required
           margin="normal"
           fullWidth
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          label="password"
+          label="Password"
           type="password"
           required
           margin="normal"
           fullWidth
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           type="submit"
@@ -113,10 +93,10 @@ const Login = () => {
           Sign In
         </Button>
         <Typography mt={2}>
-          Dont have an account ? <Link to="/register">Please Register</Link>
+          Don’t have an account? <Link to="/register">Please Register</Link>
         </Typography>
       </form>
-      <ToastContainer />
+      <Toaster />
     </Box>
   );
 };

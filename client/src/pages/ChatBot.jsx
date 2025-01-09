@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "../utils/axios";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import axios from "../utils/axios";
 import {
   Box,
   Typography,
@@ -19,32 +19,39 @@ import {
 
 const ChatBot = () => {
   const theme = useTheme();
-  const navigate = useNavigate();
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
+  const conversationsEndRef = useRef(null);
 
   const [text, setText] = useState("");
-  const [conversations, setConversations] = useState([]); // Array to hold prompt-response pairs
+  const [conversations, setConversations] = useState([]);
   const [error, setError] = useState("");
+
+  const scrollToBottom = () => {
+    conversationsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversations]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!text.trim()) return; // Prevent empty submissions
+    if (!text.trim()) return;
 
     try {
       const { data } = await axios.post("/api/v1/gemini/chatbot", { text });
-      
       setConversations((prev) => [
         ...prev,
         { prompt: text, response: data },
       ]);
       setText("");
+      toast.success("Response received!");
     } catch (err) {
       console.log(err);
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else if (err.message) {
-        setError(err.message);
-      }
+      const errorMessage =
+        err.response?.data?.error || err.message || "An error occurred!";
+      setError(errorMessage);
+      toast.error(errorMessage);
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -54,7 +61,7 @@ const ChatBot = () => {
   return (
     <Box
       width={isNotMobile ? "50%" : "90%"}
-      p={"2rem"}
+      p={"1rem"}
       m={"2rem auto"}
       borderRadius={5}
       sx={{ boxShadow: 5 }}
@@ -66,24 +73,23 @@ const ChatBot = () => {
         </Alert>
       </Collapse>
 
-
-      <Card
-        sx={{
-          mt: 4,
-          border: 1,
-          boxShadow: 0,
-          borderRadius: 5,
-          borderColor: "natural.medium",
-          bgcolor: "background.default",
-          maxHeight: "500px",
-          overflowY: "auto",
-        }}
-      >
-        {conversations.length > 0 ? (
+      {conversations.length > 0 && (
+        <Card
+          sx={{
+            mt: 2,
+            border: 1,
+            boxShadow: 0,
+            borderRadius: 5,
+            borderColor: "natural.medium",
+            bgcolor: "background.default",
+            maxHeight: "400px",
+            overflowY: "auto",
+          }}
+        >
           <Box p={2}>
             {conversations.map((conv, index) => (
               <Box key={index} mb={2}>
-                <Typography variant="body1" fontWeight="bold">
+                <Typography variant="body1" fontWeight="bold" color="primary">
                   You:
                 </Typography>
                 <Typography
@@ -93,58 +99,61 @@ const ChatBot = () => {
                   {conv.prompt}
                 </Typography>
 
-                <Typography variant="body1" fontWeight="bold">
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  color="secondary"
+                >
                   EbukAI:
                 </Typography>
-                <ReactMarkdown
-                  children={conv.response}
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    h1: ({ node, ...props }) => (
-                      <Typography variant="h4" {...props} />
-                    ),
-                    h2: ({ node, ...props }) => (
-                      <Typography variant="h5" {...props} />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <Typography variant="body1" {...props} />
-                    ),
-                    code: ({ node, inline, ...props }) => (
-                      <Box
-                        component="code"
-                        sx={{
-                          backgroundColor: theme.palette.background.alt,
-                          padding: "2px 4px",
-                          borderRadius: "4px",
-                          fontSize: "0.875rem",
-                          fontFamily: "monospace",
-                        }}
-                        {...props}
-                      />
-                    ),
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.background.alt,
+                    padding: "10px",
+                    borderRadius: "8px",
                   }}
-                />
+                >
+                  <ReactMarkdown
+                    children={conv.response}
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h1: ({ node, ...props }) => (
+                        <Typography variant="h4" {...props} />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <Typography variant="h5" {...props} />
+                      ),
+                      p: ({ node, ...props }) => (
+                        <Typography variant="body1" {...props} />
+                      ),
+                      code: ({ node, inline, ...props }) => (
+                        <Box
+                          component="code"
+                          sx={{
+                            backgroundColor: theme.palette.background.alt,
+                            padding: "2px 4px",
+                            borderRadius: "4px",
+                            fontSize: "0.875rem",
+                            fontFamily: "monospace",
+                          }}
+                          {...props}
+                        />
+                      ),
+                    }}
+                  />
+                </Box>
 
-                {index < conversations.length - 1 && <Divider sx={{ my: 2 }} />}
+                {index < conversations.length - 1 && (
+                  <Divider sx={{ my: 2 }} />
+                )}
               </Box>
             ))}
+            <div ref={conversationsEndRef} />
           </Box>
-        ) : (
-          <Typography
-            variant="h5"
-            color="natural.main"
-            sx={{
-              textAlign: "center",
-              verticalAlign: "middle",
-              lineHeight: "normal",
-              padding: "20px 0",
-            }}
-          >
-            
-          </Typography>
-        )}
-      </Card>
-      <form onSubmit={handleSubmit}>
+        </Card>
+      )}
+
+      <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
         <Typography variant="h3" gutterBottom>
           Ask EbukAI Chatbot
         </Typography>
@@ -179,6 +188,8 @@ const ChatBot = () => {
           Not this tool? <Link to="/">GO BACK</Link>
         </Typography>
       </form>
+
+      <Toaster position="top-right" reverseOrder={false} />
     </Box>
   );
 };
