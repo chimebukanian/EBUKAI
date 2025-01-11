@@ -35,7 +35,9 @@ instance.interceptors.response.use(
     if ((error.response.status === 401 || error.response.status === 403) && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const { data } = await instance.post('http://localhost:3000/api/v1/auth/token', {}, { withCredentials: true }); // Use instance to maintain baseURL
+        const { data } = await instance.post(import.meta.env.VITE_MODE === "production"
+    ? "https://ebukai.onrender.com/api/v1/auth/token"
+        : 'http://localhost:3000/api/v1/auth/token', {}, { withCredentials: true }); // Use instance to maintain baseURL
         const newAccessToken = data.accessToken;
         localStorage.setItem('accessToken', newAccessToken);
         instance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`; // Update instance defaults

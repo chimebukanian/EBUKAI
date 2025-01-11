@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("accessToken")));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check logged-in status from localStorage
+  const checkLoginStatus = () => {
+    setIsLoggedIn(Boolean(localStorage.getItem("accessToken")));
+  };
 
   // Handle logout
   const handleLogout = async () => {
     try {
-      await axios.post("/api/v1/auth/logout");
-      localStorage.removeItem("accessToken");
-      setLoggedIn(false); // Update login state
-      toast.success("Logout successfully");
+      await axios.post("/api/v1/auth/logout"); // API call for logout
+      localStorage.removeItem("accessToken"); // Remove token from localStorage
+      setIsLoggedIn(false); // Update state
+      toast.success("Logged out successfully");
       navigate("/login");
     } catch (error) {
-      console.error(error);
+      console.error("Logout failed:", error);
+      toast.error("Failed to log out. Please try again.");
     }
   };
 
-  const handleHome = () => {
-    navigate("/");
-  };
-
-  const linkStyle = {
-    textDecoration: "none",
-    color: "inherit",
-  };
+  // Navigate to home
+  const handleHome = () => navigate("/");
 
   useEffect(() => {
-    setLoggedIn(Boolean(localStorage.getItem("accessToken")));
+    checkLoginStatus(); // Update login status on component mount
   }, []);
 
   return (
@@ -53,25 +52,34 @@ const Navbar = () => {
       >
         EbukAI
       </Typography>
-      {loggedIn ? (
-        <>
-          <NavLink to="/" style={linkStyle} p={1}>
-            Home
-          </NavLink>{" "}
-          <NavLink to="/login" style={linkStyle} onClick={handleLogout} p={1}>
-            Logout
-          </NavLink>
-        </>
-      ) : (
-        <>
-          <NavLink to="/register" style={linkStyle} p={1}>
-            Sign Up
-          </NavLink>{" "}
-          <NavLink to="/login" style={linkStyle} p={1}>
-            Sign In
-          </NavLink>
-        </>
-      )}
+      <Box mt={1}>
+        {isLoggedIn ? (
+          <>
+            <NavLink to="/" style={{ textDecoration: "none", marginRight: "1rem" }}>
+              Home
+            </NavLink>
+            <NavLink
+              to="/login"
+              style={{ textDecoration: "none" }}
+              onClick={handleLogout}
+            >
+              Logout
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/register"
+              style={{ textDecoration: "none", marginRight: "1rem" }}
+            >
+              Sign Up
+            </NavLink>
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
+              Sign In
+            </NavLink>
+          </>
+        )}
+      </Box>
     </Box>
   );
 };

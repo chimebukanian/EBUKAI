@@ -7,7 +7,7 @@ const cookie = require("cookie");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "USername is Required"],
+    required: [true, "Username is Required"],
   },
   email: {
     type: String,
@@ -36,7 +36,8 @@ userSchema.pre("save", async function (next) {
     next();
   }
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.password, salt);
+    
   next();
 });
 
@@ -54,16 +55,18 @@ userSchema.methods.getSignedToken = function (res) {
   );
   const refreshToken = JWT.sign(
     { id: this._id },
-    process.env.JWT_REFRESH_TOKEN,
-    { expiresIn: process.env.JWT_REFRESH_EXIPREIN }
+      process.env.JWT_REFRESH_TOKEN,
+    { expiresIn: process.env.JWT_REFRESH_EXPIREIN }
   );
-  res.cookie("refreshToken", `${refreshToken}`, {
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     httpOnly: true,
-    sameSite: 'strict',
-    secure: process.env.NODE_ENV === 'production'
+    sameSite: "strict",
+    secure: process.env.MODE === "production",
   });
-  return accessToken;
+
+  return { accessToken, refreshToken };
 };
 
 const User = mongoose.model("User", userSchema);

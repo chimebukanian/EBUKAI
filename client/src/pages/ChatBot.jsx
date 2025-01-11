@@ -15,7 +15,9 @@ import {
   Collapse,
   Card,
   Divider,
+  IconButton,
 } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const ChatBot = () => {
   const theme = useTheme();
@@ -39,10 +41,18 @@ const ChatBot = () => {
     if (!text.trim()) return;
 
     try {
-      const { data } = await axios.post("/api/v1/gemini/chatbot", { text });
+      const fullConversation = conversations
+        .map((conv) => `User: ${conv.prompt}\nEbukAI: ${conv.response}`)
+        .join("\n");
+
+      const { data } = await axios.post("/api/v1/gemini/chatbot", {
+        text,
+        history: fullConversation,
+      });
+
       setConversations((prev) => [
         ...prev,
-        { prompt: text, response: data },
+        { prompt: text, response: data.reply },
       ]);
       setText("");
       toast.success("Response received!");
@@ -56,6 +66,11 @@ const ChatBot = () => {
         setError("");
       }, 5000);
     }
+  };
+
+  const handleCopy = (code) => {
+    navigator.clipboard.writeText(code);
+    toast.success("Code copied to clipboard!");
   };
 
   return (
@@ -94,7 +109,11 @@ const ChatBot = () => {
                 </Typography>
                 <Typography
                   variant="body1"
-                  sx={{ whiteSpace: "pre-wrap", mb: 1 }}
+                  sx={{
+                    whiteSpace: "pre-wrap",
+                    mb: 1,
+                    wordBreak: "break-word",
+                  }}
                 >
                   {conv.prompt}
                 </Typography>
@@ -109,36 +128,101 @@ const ChatBot = () => {
                 <Box
                   sx={{
                     backgroundColor: theme.palette.background.alt,
-                    padding: "10px",
                     borderRadius: "8px",
+                    overflowX: "auto",
+                    wordBreak: "break-word",
                   }}
                 >
                   <ReactMarkdown
                     children={conv.response}
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      h1: ({ node, ...props }) => (
-                        <Typography variant="h4" {...props} />
-                      ),
-                      h2: ({ node, ...props }) => (
-                        <Typography variant="h5" {...props} />
-                      ),
-                      p: ({ node, ...props }) => (
-                        <Typography variant="body1" {...props} />
-                      ),
-                      code: ({ node, inline, ...props }) => (
-                        <Box
-                          component="code"
-                          sx={{
-                            backgroundColor: theme.palette.background.alt,
-                            padding: "2px 4px",
-                            borderRadius: "4px",
-                            fontSize: "0.875rem",
-                            fontFamily: "monospace",
-                          }}
-                          {...props}
-                        />
-                      ),
+                      code: ({ node, inline, className, children, ...props }) => {
+                        const match = /language-(\w+)/.exec(className || "");
+                        const language = match?.[1] || "";
+
+                        return !inline ? (
+                          <Box
+                            sx={{
+                              mb: 2,
+                              border: "1px solid",
+                              borderColor: "divider",
+                              borderRadius: "5px",
+                              backgroundColor: theme.palette.background.paper,
+                              position: "relative",
+                            }}
+                          >
+                            {/* Horizontal Bar with Language Name and Copy Icon */}
+                            <Box
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                px: 2,
+                                py: 1,
+                                backgroundColor: theme.palette.grey[200],
+                                borderTopLeftRadius: "5px",
+                                borderTopRightRadius: "5px",
+                                borderBottom: "1px solid",
+                                borderColor: theme.palette.divider,
+                              }}
+                            >
+                              {language && (
+                                <Typography
+                                  variant="caption"
+                                  sx={{
+                                    fontSize: "0.8rem",
+                                    fontWeight: 600,
+                                    color: theme.palette.text.secondary,
+                                  }}
+                                >
+                                  {language.toUpperCase()}
+                                </Typography>
+                              )}
+                              <IconButton
+                                size="small"
+                                onClick={() => handleCopy(children)}
+                              >
+                                <ContentCopyIcon fontSize="small" />
+                              </IconButton>
+                            </Box>
+
+                            {/* Code Block */}
+                            <Box
+                              component="pre"
+                              sx={{
+                                margin: 0,
+                                padding: "10px",
+                                fontSize: "0.875rem",
+                                fontFamily: "monospace",
+                                overflowX: "auto",
+                                borderBottomLeftRadius: "5px",
+                                borderBottomRightRadius: "5px",
+                              }}
+                              {...props}
+                            >
+                              {children}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box
+                            component="code"
+                            sx={{
+                              backgroundColor: theme.palette.background.alt,
+                              padding: "2px 4px",
+                              borderRadius: "4px",
+                              fontSize: "0.875rem",
+                              fontFamily: "monospace",
+                              display: "inline-block",
+                              wordBreak: "break-word",
+                              overflowX: "auto",
+                            }}
+                            {...props}
+                          >
+                            {children}
+                          </Box>
+                        );
+                      },
                     }}
                   />
                 </Box>
@@ -159,7 +243,7 @@ const ChatBot = () => {
         </Typography>
 
         <TextField
-          placeholder="Ask anything. e.g., who is EbukAI?"
+          placeholder="Ask anything! e.g. who am i or my developer?"
           type="text"
           multiline
           required
@@ -168,7 +252,7 @@ const ChatBot = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
+            if (e.key === "Enter" && e.shiftKey) {
               e.preventDefault();
               handleSubmit(e);
             }
