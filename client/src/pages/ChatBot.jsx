@@ -45,7 +45,8 @@ useEffect(() => {
 
       // Directly display the bot's response as the first message
       setConversations([{ prompt: "", response: data.reply }]);
-	toast.success(`${aiMessage}`);
+	  toast.success(`${aiMessage}`);
+	  setLoading(false);
     } catch (err) {
       console.log(err);
       const errorMessage =
