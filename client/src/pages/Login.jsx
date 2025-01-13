@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "../utils/axios";
+import { AIContext } from "../context/AIContext";
 import {
   Box,
   Typography,
@@ -15,6 +16,7 @@ const Login = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
+  const { setAiMessage } = useContext(AIContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate fields
     if (!email || !password) {
       toast.error("Please fill in all fields");
       return;
@@ -35,11 +36,12 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      const { success, message, accessToken } = data;
+      const { success, message, accessToken, aiMessage } = data;
       if (success && accessToken) {
         toast.success(message);
         localStorage.setItem("accessToken", accessToken);
-        setTimeout(() => navigate("/"), 1000);
+        setAiMessage(aiMessage); // Save the AI welcome message
+        setTimeout(() => navigate("/chatbot"), 1000);
       } else {
         toast.error(message || "Login failed");
       }

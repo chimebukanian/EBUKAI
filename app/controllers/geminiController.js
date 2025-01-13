@@ -9,7 +9,10 @@ Email: chimebukaayanwu@gmail.com
 portfolio site (AI-based): https://chat-ebukai.onrender.com
 LinkedIn: http://www.linkedin.com/in/chimebuka-anyanwu
 Cybersecurity: https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
-GitHub: https://github.com/chimebukanian  
+GitHub: https://github.com/chimebukanian
+x (formerly known as twitter): https://x.com/Hon_Ebukanian
+instagram: https://www.instagram.com/anyanwu_chimebuk
+youtube channel: https://youtube.com/@anyanwuchimebuka
 Address: 7, fasasi, leonard umunna Crescent, olodi apapa, Lagos, Nigeria 
 Software developer 
 A driven Full stack software engineer with stacks, (node/express, Django, Django REST framework, Java springboot, C# .Net), alongside side typescript, React, C programming. I am willing to aid the organization's progress with my technical and soft skills to deliver the best code and software products, aiding shipping and deployment on time as well. I also have good understanding of AWS cloud services for cloud computing and cloud-native software. Also as a Google-certified cybersecurity professional I ensure not just network and cloud security but as well, application security by use of standard security practices all through the SDLC.
@@ -181,14 +184,16 @@ May 2021 - August 2021
 3MTT hackathon winner 2024 
 02/2022 - 04/2023 
 •Remote
-contract Backend developer role in building a telemedicine software for medical consultation (stacks are Django REST framework for writing APIs) 
+contract Backend developer role in building a telemedicine software for medical consultation (stacks are Django REST framework for writing APIs)
+
+fun fact: also a professional musician (guitarist) and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
 `
 exports.chatbotController = async (req, res) => {
   try {
     const { text, history } = req.body;
 
 
-      const prompt = `You are EbukAI, a chatbot web app developed (using the MERN stack for frontend and backend) by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here are his different resumè: ${chimebuka}
+      const prompt = `You are EbukAI, a chatbot web app developed (using the MERN stack for frontend and backend) by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here are his different resumè: ${chimebuka}. when asked give all details (even if the question was about you)
 
 Meanwhile, you primarily are to answer users communicating with you.
 A user is currently conversing with you, Here is the history of a conversation between you and the user so far: ${history}, which you might need to make reference to in subsequent prompts. answer the user's next prompt.

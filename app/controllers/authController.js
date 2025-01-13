@@ -2,15 +2,64 @@ const userModel = require("../models/userModel");
 const errorResponse = require("../utils/errorResponse");
 
 // JWT TOKEN
-const sendToken = (user, statusCode, res, message) => {
+const sendToken = (user, statusCode, res, message, customResponse = {}) => {
   const { accessToken, refreshToken } = user.getSignedToken(res); // Get both tokens
   res.status(statusCode).json({
     message,
     success: true,
     accessToken,
-    refreshToken // Include refreshToken in the response
+    refreshToken, // Include refreshToken in the response
+    ...customResponse, // Include any additional custom response data
   });
 };
+
+
+
+// LOGIN
+exports.loginController = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email || !password) {
+      return next(
+        new errorResponse(
+          "Please provide an email and password.",
+          res,
+          false,
+          400
+        )
+      );
+    }
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return next(
+        new errorResponse("Invalid credentials. User not found.", res, false, 401)
+      );
+    }
+
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return next(
+        new errorResponse("Invalid credentials. Password incorrect.", res, false, 401)
+      );
+    }
+
+    // AI Response with Welcome Message
+    const aiMessage = `
+      Welcome back, ${user.username}! `
+
+    // Send response with tokens and AI message
+    sendToken(user, 200, res, "User logged in successfully", { aiMessage });
+  } catch (error) {
+    console.error(error);
+    return next(
+      new errorResponse("Server error occurred during login.", res, false, 500)
+    );
+  }
+};
+
 
 //REGISTER
 exports.registerController = async (req, res, next) => {
@@ -36,39 +85,6 @@ exports.registerController = async (req, res, next) => {
   }
 };
 
-
-//LOGIN
-exports.loginController = async (req, res, next) => {
-    console.log("hit")
-  try {
-    const { email, password } = req.body;
-    //validation
-      if (!email || !password) {
-	  console.log("emil or psw")
-      return next(new errorResponse("Please provide email or password", res, false, 500));
-      //  res.json({message:'Incorrect password or email' });
-    }
-    const user = await userModel.findOne({ email });
-      if (!user) {
-	  console.log("non")
-      return next(new errorResponse("Invalid Creditial", res, false, 500));
-      // return res.json({message:'Incorrect password or email' }) 
-    }
-    const isMatch = await user.matchPassword(password);
-      if (!isMatch) {
-	  console.log("match")
-      return next(new errorResponse("Invalid password", res, false, 500));
-      // return res.json({message:'Incorrect password or email' }) ;
-    }
-    //res
-    sendToken(user, 200, res, "User logged in successfully");
-
-  } catch (error) {
-      console.error(error);
-      console.log("server")
-    return next(new errorResponse(error, res, false, 500));
-  }
-};
 
 exports.tokenController = async (req, res) => {
   const { refreshToken } = req.cookies;
