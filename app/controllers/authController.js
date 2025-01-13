@@ -48,14 +48,14 @@ exports.loginController = async (req, res, next) => {
 
     // AI Response with Welcome Message
     const aiMessage = `
-      Welcome back, ${user.username}! `
+      Welcome, ${user.username}! `
 
     // Send response with tokens and AI message
     sendToken(user, 200, res, "User logged in successfully", { aiMessage });
   } catch (error) {
     console.error(error);
     return next(
-      new errorResponse("Server error occurred during login.", res, false, 500)
+      new errorResponse(error, res, false, 500)
     );
   }
 };

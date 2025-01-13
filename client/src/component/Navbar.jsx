@@ -1,39 +1,22 @@
-import React, { useEffect, useState } from "react";
+// component/Navbar.jsx
+import React, { useContext } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "../utils/axios";
+import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
-  // Check logged-in status from localStorage
-  const checkLoginStatus = () => {
-    setIsLoggedIn(Boolean(localStorage.getItem("accessToken")));
+  const handleLogout = () => {
+    logout(); // Call logout from context
+    toast.success("Logged out successfully");
+    navigate("/login");
   };
 
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      await axios.post("/api/v1/auth/logout"); // API call for logout
-      localStorage.removeItem("accessToken"); // Remove token from localStorage
-      setIsLoggedIn(false); // Update state
-      toast.success("Logged out successfully");
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-      toast.error("Failed to log out. Please try again.");
-    }
-  };
-
-  // Navigate to home
   const handleHome = () => navigate("/");
-
-  useEffect(() => {
-    checkLoginStatus(); // Update login status on component mount
-  }, []);
 
   return (
     <Box

@@ -35,7 +35,8 @@ const ChatBot = () => {
 
 useEffect(() => {
   const fetchInitialMessage = async () => {
-    try {
+      try {
+	  setLoading(true);
 	const initialPrompt = `give me full details of who you and your developer is. your response should start with ${aiMessage}`;
       const { data } = await axios.post("/api/v1/gemini/chatbot", {
         text: initialPrompt,

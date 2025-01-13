@@ -11,6 +11,7 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const theme = useTheme();
@@ -20,6 +21,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,8 +41,9 @@ const Login = () => {
       const { success, message, accessToken, aiMessage } = data;
       if (success && accessToken) {
         toast.success(message);
-        localStorage.setItem("accessToken", accessToken);
-        setAiMessage(aiMessage); // Save the AI welcome message
+          localStorage.setItem("accessToken", accessToken);
+	  login(accessToken)
+          setAiMessage(aiMessage); // Save the AI welcome message
         setTimeout(() => navigate("/chatbot"), 1000);
       } else {
         toast.error(message || "Login failed");

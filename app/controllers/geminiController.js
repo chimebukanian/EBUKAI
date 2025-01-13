@@ -6,14 +6,14 @@ const chimebuka = `Anyanwu Chimebuka Emmanuel
 
 Phone: +234 806 933 1070  
 Email: chimebukaayanwu@gmail.com  
-portfolio site (AI-based): https://chat-ebukai.onrender.com
+portfolio site (AI-powered): https://chat-ebukai.onrender.com
 LinkedIn: http://www.linkedin.com/in/chimebuka-anyanwu
 Cybersecurity: https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
 GitHub: https://github.com/chimebukanian
 x (formerly known as twitter): https://x.com/Hon_Ebukanian
 instagram: https://www.instagram.com/anyanwu_chimebuk
 youtube channel: https://youtube.com/@anyanwuchimebuka
-Address: 7, fasasi, leonard umunna Crescent, olodi apapa, Lagos, Nigeria 
+basdd in Lagos, Nigeria 
 Software developer 
 A driven Full stack software engineer with stacks, (node/express, Django, Django REST framework, Java springboot, C# .Net), alongside side typescript, React, C programming. I am willing to aid the organization's progress with my technical and soft skills to deliver the best code and software products, aiding shipping and deployment on time as well. I also have good understanding of AWS cloud services for cloud computing and cloud-native software. Also as a Google-certified cybersecurity professional I ensure not just network and cloud security but as well, application security by use of standard security practices all through the SDLC.
 WORK EXPERIENCE 
@@ -198,7 +198,7 @@ exports.chatbotController = async (req, res) => {
 Meanwhile, you primarily are to answer users communicating with you.
 A user is currently conversing with you, Here is the history of a conversation between you and the user so far: ${history}, which you might need to make reference to in subsequent prompts. answer the user's next prompt.
       User: ${text}
-      EbukAI:
+      
     `;
 
   
