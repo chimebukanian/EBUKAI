@@ -47,7 +47,8 @@ useEffect(() => {
       setConversations([{ prompt: "", response: data.reply }]);
 	  toast.success(`${aiMessage}`);
 	  setLoading(false);
-    } catch (err) {
+      } catch (err) {
+	  setLoading(false);
       console.log(err);
       const errorMessage =
         err.response?.data?.error || err.message || "An error occurred!";
@@ -299,7 +300,7 @@ useEffect(() => {
       disabled={loading}
       sx={{ color: "white", mt: 2 }}
     >
-      {loading ? "Loading..." : "Chat"}
+      {loading ? "Loading..." : "send"}
     </Button>
     <Typography mt={2}>
       Not this tool? <Link to="/">GO BACK</Link>

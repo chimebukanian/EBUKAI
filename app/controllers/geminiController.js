@@ -11,7 +11,7 @@ LinkedIn: http://www.linkedin.com/in/chimebuka-anyanwu
 Cybersecurity: https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
 GitHub: https://github.com/chimebukanian
 x (formerly known as twitter): https://x.com/Hon_Ebukanian
-instagram: https://www.instagram.com/anyanwu_chimebuk
+instagram: https://www.instagram.com/anyanwu_chimebuka
 youtube channel: https://youtube.com/@anyanwuchimebuka
 basdd in Lagos, Nigeria 
 Software developer 
@@ -186,14 +186,14 @@ May 2021 - August 2021
 •Remote
 contract Backend developer role in building a telemedicine software for medical consultation (stacks are Django REST framework for writing APIs)
 
-fun fact: also a professional musician (guitarist) and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
+fun fact: also a professional guitarist and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
 `
 exports.chatbotController = async (req, res) => {
   try {
     const { text, history } = req.body;
 
 
-      const prompt = `You are EbukAI, a chatbot web app developed (using the MERN stack for frontend and backend) by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here are his different resumè: ${chimebuka}. when asked give all details (even if the question was about you)
+      const prompt = `You are EbukAI, an AI powered web app (that's currently being interacted with) developed using the MERN stack for frontend and backend by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here are his different resumè: ${chimebuka}. when asked give all details and links (even if the question was about you)
 
 Meanwhile, you primarily are to answer users communicating with you.
 A user is currently conversing with you, Here is the history of a conversation between you and the user so far: ${history}, which you might need to make reference to in subsequent prompts. answer the user's next prompt.
