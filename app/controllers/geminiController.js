@@ -2,72 +2,60 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
-const chimebuka = `Anyanwu Chimebuka Emmanuel 
+const chimebuka = `Anyanwu Chimebuka Emmanuel
+Software developer 
 
+Contact Information:
 Phone: +234 806 933 1070  
 Email: chimebukaayanwu@gmail.com  
-portfolio site (AI-powered): https://chat-ebukai.onrender.com
+portfolio site (AI-based): https://chat-ebukai.onrender.com
 LinkedIn: http://www.linkedin.com/in/chimebuka-anyanwu
-Cybersecurity: https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
 GitHub: https://github.com/chimebukanian
-x (formerly known as twitter): https://x.com/Hon_Ebukanian
-instagram: https://www.instagram.com/anyanwu_chimebuka
-youtube channel: https://youtube.com/@anyanwuchimebuka
-basdd in Lagos, Nigeria 
-Software developer 
-A driven Full stack software engineer with stacks, (node/express, Django, Django REST framework, Java springboot, C# .Net), alongside side typescript, React, C programming. I am willing to aid the organization's progress with my technical and soft skills to deliver the best code and software products, aiding shipping and deployment on time as well. I also have good understanding of AWS cloud services for cloud computing and cloud-native software. Also as a Google-certified cybersecurity professional I ensure not just network and cloud security but as well, application security by use of standard security practices all through the SDLC.
-WORK EXPERIENCE 
-3MTT hackathon regional winner 2024 
-•02/2022 - 04/2023 
-•Remote
-contract Backend developer role in a competition, where my team won for  building a telemedicine software for medical consultation (stacks are Django REST framework for writing APIs) 
+Lagos, Nigeria
 
-ALX Africa 
-•02/2022 - 04/2023 
-•Remote 
-Internship (activities involved Low Level Programming With C, 
-Devops/systems engineering, Linux, High Level Programming with Python, Flask, JavaScript, Node, Technical Writing) 
- 
+Professional Summary
+Driven Full Stack Software Engineer skilled in building scalable and secure software applications. Proficient in various stacks, including Node.js/Express, Django/Django REST Framework, Java Spring Boot, and C# .NET, alongside TypeScript, React, and C programming. Experienced in cloud-native development with AWS and application security as a Google-certified cybersecurity professional. Adept at delivering reliable software solutions, meeting tight deadlines, and ensuring maintainability and performance.
 
-Zuri/ingressive for Good  
-•05/2022 - 07/2022 
-•Remote 
-Internship (backend developer (Django and node based projects) 
- 
-Joski print 
- •12/2021 - 03/2022 
-Full-stack Developer(freelance) 
-• developed app to handle printing jobs orders online 
- 
-EDUCATION  
+Technical Skills
+Programming Languages: Python, JavaScript, TypeScript, C, C#, C++, Java
+Frameworks:** Django, Django REST Framework, Node.js, React, Java Spring Boot.
+Tools & Platforms: AWS, Linux, Docker, Git.
+Other Expertise: Cloud Computing, Technical Writing, CyberSecurity, Soft Skills
 
-B.sc in Biochemistry  
-University of Ibadan 
-•01/2019 - 05/2024 
- 
- Diploma in Computer Software Engineering 
-ALX Africa (Holberton School) 
-•02/2022 - 04/2023 
-Certification in backend development (Node/express and Django) 
-Zuri/ingressive for good internship 
-•05/2022 - 07/2022 
-Certification in Python 
-Cisco Networking Academy (python institute) Python programming. 
-•01/2020 - 01/2020  
- 
-CERTIFICATIONS 
- Soft skills 
-Jobberman Nigeria  
-Organizations 
-Google Developer Student Club University of Ibadan 
-Member 
- 
-The Room Fellowship
- Fellow 
- 
-SKILLS 
-Soft Skills, linux system engineering/devops, cloud computing, technical writing,  typescript, JavaScript, 
-Node.js, c#, React, C (Programming Language), Django, Python (Programming Language), C++, Java, Back-End Web Development, Kivy,
+Professional Experience
+Contract Backend Developer  
+Remote – 02/2022 to 04/2023  
+Built a telemedicine platform for medical consultations, leveraging Django REST Framework for API development.
+- Collaborated with a remote team to secure a regional win in the 3MTT hackathon.
+ALX Africa  (training)
+Remote – 02/2022 to 04/2023  
+Gained hands-on experience in low-level programming with C, high-level programming with Python, Flask, and JavaScript.
+Enhanced DevOps and Linux system engineering skills while contributing to collaborative projects.
+Zuri/Ingressive for Good (Backend Developer Intern)  
+Remote – 05/2022 to 07/2022 
+Developed backend solutions for Django- and Node.js-based projects.
+Improved coding efficiency and problem-solving through collaborative sprints.
+
+
+
+
+Education
+Bachelor of Science in Biochemistry
+University of Ibadan – 01/2019 to 05/2024*
+Diploma in Computer Software Engineering  
+ALX Africa (Holberton School) – 02/2022 to 04/2023
+
+
+
+Certifications
+Google Cybersecurity certificate:
+https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
+Soft skills certification: https://drive.google.com/file/d/1fllrroKxnHjDrG1VpuaitehdJpjCqQdM/view?usp=drivesdk 
+Software engineering: https://drive.google.com/file/d/1ZRzhQmBOUhsIw2Zx2V1q0MegwL7RLdrF/view?usp=drivesdk
+https://drive.google.com/file/d/1ZeASKYju7tonGokJF1499HkwBHjozsdr/view?usp=drivesdk
+Organizations & Fellowship
+- Member, Google Developer Student Club, University of Ibadan
+- Fellow, The Room Fellowship
 
 Anyanwu Chimebuka Emmanuel 
 Cybersecurity Analyst 
@@ -155,12 +143,6 @@ Skills
 - Strong written and verbal communication abilities  
 - Attention to detail and ability to follow protocols
  
-Certifications
-Certification in Soft Skills: https://drive.google.com/file/d/1fllrroKxnHjDrG1VpuaitehdJpjCqQdM/view?usp=drivesdk
-Jobberman Soft Skills Training (Communication, leadership, team work, critical thinking, etc) 05/2020 - 06/2020
-Google Cybersecurity Certificate (8 course series on Coursera)
-
-
 
 
 Leadership Experience
@@ -169,9 +151,7 @@ Basic Medical Science Students Association Faculty Legislative Council (BAMSSA F
 
 
 Work Experience
-Internship backend developer (Node/express and Django) 
-Zuri/ingressive for good 
-•05/2022 - 07/2022  
+
 
 Data entry clerk and customer services
 Cyber Cafe, Lagos Nigeria 
@@ -181,10 +161,7 @@ May 2021 - August 2021
 - Handled cash register operations and transactions
 - Resolved customer complaints and issues efficiently
 
-3MTT hackathon winner 2024 
-02/2022 - 04/2023 
-•Remote
-contract Backend developer role in building a telemedicine software for medical consultation (stacks are Django REST framework for writing APIs)
+
 
 fun fact: also a professional guitarist and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
 `
