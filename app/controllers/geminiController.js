@@ -151,7 +151,7 @@ Organizations & Fellowship
 - Member, Google Developer Student Club, University of Ibadan
 - Fellow, The Room Fellowship
 Leadership Experience
-Honorable member, Spokesman and Chairman of the Media and Publicity Committee of the Basic Medical Science Students Association, Faculty Legislative Council (BAMSSA FLC), College of medicine, University of Ibadan.
+Honorable member, Spokesman and Chairman of the Media and Publicity Committee of the Faculty Legislative Council of the Basic Medical Science Students Association,(BAMSSA FLC), University of Ibadan.
 
 fun fact: also a professional guitarist and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
 `
