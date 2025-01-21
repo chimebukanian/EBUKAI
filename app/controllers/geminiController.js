@@ -111,30 +111,26 @@ Skills in Detail
 - Linux: Proficient in command-line tools for systems administration and network security.
 
 Anyanwu Chimebuka Emmanuel
-chimebukaayanwu@gmail.com
- http://www.linkedin.com/in/chimebuka-anyanwu
-https://github.com/chimebukanian
-+2348069331070
-Olodi Apapa, Lagos, Nigeria
-
-Career Objective
-I am a tech-savvy recent graduate of the University of Ibadan, with a strong background in biochemistry and scientific research and as well, computer programming and general software use e.g E-mails, Microsoft office suite, slack, zoom and others) and as well leadership and team play. I possess communication and organizational skills with the ease to multitask and prioritize effectively. I'm passionate on being an exceptional addition to the company. My career goals are to secure a role that allows me to apply my knowledge and skills to contribute to scientific advancements and problem-solving across various industries. 
+Phone: +234 806 933 1070  
+Contact Information:
+Phone: +234 806 933 1070  
+Email: chimebukaayanwu@gmail.com  
+portfolio site (AI-based): https://chat-ebukai.onrender.com
+LinkedIn: http://www.linkedin.com/in/chimebuka-anyanwu
+GitHub: https://github.com/chimebukanian
+Lagos, Nigeria
+Professional Summary
+I am a tech-savvy recent graduate of the University of Ibadan, with a strong background in biochemistry and scientific research and as well, computer programming and general software use e.g E-mails, Microsoft office suite, slack, zoom and others) and as well leadership and team play. I possess communication and organizational skills with the ease to multitask and prioritize effectively. I'm passionate on being an exceptional addition to the company. My career goals are to secure a role that allows me to apply my knowledge and skills to contribute to advancements and problem-solving in any organization I am in.
 Education
-B.Sc. Biochemistry
-Faculty of Basic Medical Sciences,
-College of Medicine,
-University of Ibadan
-Ibadan, Nigeria.
-02/2019 - 05/2024
-
-Diploma in Computer Software Engineering 
-ALX Africa (Holberton School) 
-•02/2022 - 04/2023 
+Bachelor of Science in Biochemistry 
+University of Ibadan (college of medicine)– 01/2019 to 05/2024
+Diploma in Computer Software Engineering  
+ALX Africa (Holberton School) – 02/2022 to 04/2023
 Skills
 - Proficient with general computer software use e.g, GraphPad Prism, Microsoft Office Suite (Word, Excel, PowerPoint, Outlook)
 - Experience with virtual meeting/video conferencing tools (Zoom, Teams, etc.)
 - Detail-oriented with outstanding organizational skills
-- Fast learner able to quickly adapt to new technologies
+- Fast on-the-job learner, able to quickly adapt to new technologies
 - Time management and ability to meet deadlines
 - Proficient in laboratory techniques and analytical methods
 - Knowledge of biochemical principles and applications
@@ -143,25 +139,17 @@ Skills
 - Strong written and verbal communication abilities  
 - Attention to detail and ability to follow protocols
  
-
-
+Certifications
+Google Cybersecurity certificate:
+https://www.credly.com/badges/903a3db5-8ffc-48da-965f-03d0cec39a78/public_url
+Soft skills certification: https://drive.google.com/file/d/1fllrroKxnHjDrG1VpuaitehdJpjCqQdM/view?usp=drivesdk 
+Software engineering: https://drive.google.com/file/d/1ZRzhQmBOUhsIw2Zx2V1q0MegwL7RLdrF/view?usp=drivesdk
+https://drive.google.com/file/d/1ZeASKYju7tonGokJF1499HkwBHjozsdr/view?usp=drivesdk
+Organizations & Fellowship
+- Member, Google Developer Student Club, University of Ibadan
+- Fellow, The Room Fellowship
 Leadership Experience
-Spokesman and Chairman of the Media and Publicity Committee
-Basic Medical Science Students Association Faculty Legislative Council (BAMSSA FLC), University of Ibadan.
-
-
-Work Experience
-
-
-Data entry clerk and customer services
-Cyber Cafe, Lagos Nigeria 
-May 2021 - August 2021
-- Answered to customer needs in data entry and typing of documents, editing, printing, and other services. 
-- Provided friendly and knowledgeable customer service 
-- Handled cash register operations and transactions
-- Resolved customer complaints and issues efficiently
-
-
+Honorable member, Spokesman and Chairman of the Media and Publicity Committee of the Basic Medical Science Students Association, Faculty Legislative Council (BAMSSA FLC), College of medicine, University of Ibadan.
 
 fun fact: also a professional guitarist and music director, with proficiecy in vast array of genres including contempoary, afro pop, fusion, highlife, RnB, gospel, blues, rock, alternative rock, etc. also having some knowledge classial guitar. with experience in session and tracking  guitar
 `
@@ -170,7 +158,7 @@ exports.chatbotController = async (req, res) => {
     const { text, history } = req.body;
 
 
-      const prompt = `You are EbukAI, an AI powered web app (that's currently being interacted with) developed using the MERN stack for frontend and backend by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here are his different resumè: ${chimebuka}. when asked give all details and links (even if the question was about you)
+      const prompt = `You are EbukAI, an AI powered web app (that's currently being interacted with) developed using the MERN stack for frontend and backend by Chimebuka, who is a software engineer (full stack) and cybersecurity analyst, and can secondarily, serve as his portfolio website to highilight his professional qualifications and skills. here is more details about him: ${chimebuka}. when asked give all details including links (even if the question was about you)
 
 Meanwhile, you primarily are to answer users communicating with you.
 A user is currently conversing with you, Here is the history of a conversation between you and the user so far: ${history}, which you might need to make reference to in subsequent prompts. answer the user's next prompt.
