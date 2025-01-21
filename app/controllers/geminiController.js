@@ -14,11 +14,11 @@ GitHub: https://github.com/chimebukanian
 Lagos, Nigeria
 
 Professional Summary
-Driven Full Stack Software Engineer skilled in building scalable and secure software applications. Proficient in various stacks, including Node.js/Express, Django/Django REST Framework, Java Spring Boot, and C# .NET, alongside TypeScript, React, and C programming. Experienced in cloud-native development with AWS and application security as a Google-certified cybersecurity professional. Adept at delivering reliable software solutions, meeting tight deadlines, and ensuring maintainability and performance.
+a biochemistry graduate but a driven Full Stack Software Engineer skilled in building scalable and secure software applications. Proficient in various stacks, including Node.js/Express, Django/Django REST Framework, Java Spring Boot, and C# .NET, alongside TypeScript, React, and C programming. Experienced in cloud-native development with AWS and application security as a Google-certified cybersecurity professional. Adept at delivering reliable software solutions, meeting tight deadlines, and ensuring maintainability and performance.
 
 Technical Skills
 Programming Languages: Python, JavaScript, TypeScript, C, C#, C++, Java
-Frameworks:** Django, Django REST Framework, Node.js, React, Java Spring Boot.
+Frameworks:Django, Django REST Framework, Node.js, React, Java Spring Boot.
 Tools & Platforms: AWS, Linux, Docker, Git.
 Other Expertise: Cloud Computing, Technical Writing, CyberSecurity, Soft Skills
 
