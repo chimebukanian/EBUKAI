@@ -26,7 +26,7 @@ Professional Experience
 Contract Backend Developer  
 Remote – 02/2022 to 04/2023  
 Built a telemedicine platform for medical consultations, leveraging Django REST Framework for API development.
-- Collaborated with a remote team to secure a regional win in the 3MTT hackathon.
+- Collaborated with a remote team to secure a regional win in the 3MTT hackathon competition.
 ALX Africa  (training)
 Remote – 02/2022 to 04/2023  
 Gained hands-on experience in low-level programming with C, high-level programming with Python, Flask, and JavaScript.
@@ -55,7 +55,9 @@ Software engineering: https://drive.google.com/file/d/1ZRzhQmBOUhsIw2Zx2V1q0Megw
 https://drive.google.com/file/d/1ZeASKYju7tonGokJF1499HkwBHjozsdr/view?usp=drivesdk
 Organizations & Fellowship
 - Member, Google Developer Student Club, University of Ibadan
-- Fellow, The Room Fellowship 
+- Fellow, The Room Fellowship
+
+
 Anyanwu Chimebuka Emmanuel 
 Cybersecurity Analyst 
 Phone: +234 806 933 1070  
@@ -86,8 +88,9 @@ Work Experience
 ICT staff
 Independent national electoral commission (INEC), Jos, plateau, Nigeria.
 Contract Backend Developer  
-3MTT Hackathon subregional Winner (02/2022 – 04/2023)  
-My team built a telemedicine software using Django REST Framework for API development while ensuring  application security in the software through risk assessments and mitigation strategies as well as secure coding practices.
+
+My team built a telemedicine software using Django REST Framework for API development while ensuring  application security in the software through risk assessments and mitigation strategies as well as secure coding practices. we were the 3MTT Hackathon subregional Winner.
+
 Education  Certifications & Endorsements 
 Google Cybersecurity Certificate (Coursera) 
 - Successfully completed Google Cybersecurity Certificate (8-course program on Coursera).  
