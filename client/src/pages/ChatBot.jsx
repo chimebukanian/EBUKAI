@@ -307,7 +307,7 @@ useEffect(() => {
     </Typography>
   </form>
 
-  <Toaster position="top-right" reverseOrder={false} />
+  
 </Box>
 );
 };

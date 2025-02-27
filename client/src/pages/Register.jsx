@@ -105,7 +105,7 @@ const Register = () => {
           Already have an account? <Link to="/login">Please Login</Link>
         </Typography>
       </form>
-      <Toaster />
+
     </Box>
   );
 };

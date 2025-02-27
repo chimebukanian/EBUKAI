@@ -101,7 +101,7 @@ const { login } = useContext(AuthContext);
           Don’t have an account? <Link to="/register">Please Register</Link>
         </Typography>
       </form>
-      <Toaster />
+
     </Box>
   );
 };
